@@ -1,0 +1,14 @@
+C:\Users\ADmin\Desktop\Lab1_APPZ\bin\Debug\net9.0\Lab1_APPZ.exe
+C:\Users\ADmin\Desktop\Lab1_APPZ\bin\Debug\net9.0\Lab1_APPZ.deps.json
+C:\Users\ADmin\Desktop\Lab1_APPZ\bin\Debug\net9.0\Lab1_APPZ.runtimeconfig.json
+C:\Users\ADmin\Desktop\Lab1_APPZ\bin\Debug\net9.0\Lab1_APPZ.dll
+C:\Users\ADmin\Desktop\Lab1_APPZ\bin\Debug\net9.0\Lab1_APPZ.pdb
+C:\Users\ADmin\Desktop\Lab1_APPZ\obj\Debug\net9.0\Lab1_APPZ.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ADmin\Desktop\Lab1_APPZ\obj\Debug\net9.0\Lab1_APPZ.AssemblyInfoInputs.cache
+C:\Users\ADmin\Desktop\Lab1_APPZ\obj\Debug\net9.0\Lab1_APPZ.AssemblyInfo.cs
+C:\Users\ADmin\Desktop\Lab1_APPZ\obj\Debug\net9.0\Lab1_APPZ.csproj.CoreCompileInputs.cache
+C:\Users\ADmin\Desktop\Lab1_APPZ\obj\Debug\net9.0\Lab1_APPZ.dll
+C:\Users\ADmin\Desktop\Lab1_APPZ\obj\Debug\net9.0\refint\Lab1_APPZ.dll
+C:\Users\ADmin\Desktop\Lab1_APPZ\obj\Debug\net9.0\Lab1_APPZ.pdb
+C:\Users\ADmin\Desktop\Lab1_APPZ\obj\Debug\net9.0\Lab1_APPZ.genruntimeconfig.cache
+C:\Users\ADmin\Desktop\Lab1_APPZ\obj\Debug\net9.0\ref\Lab1_APPZ.dll

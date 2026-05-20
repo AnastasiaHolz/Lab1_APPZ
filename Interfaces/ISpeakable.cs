@@ -1,0 +1,4 @@
+interface ISpeakable
+{
+    void Speak();
+}

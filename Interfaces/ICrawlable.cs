@@ -1,0 +1,4 @@
+interface ICrawlable
+{
+    void Crawl();
+}
