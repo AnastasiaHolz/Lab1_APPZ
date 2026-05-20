@@ -1,4 +1,0 @@
-interface IRunnable
-{
-    void Run();
-}

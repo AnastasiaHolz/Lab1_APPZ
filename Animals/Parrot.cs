@@ -1,4 +1,4 @@
-class Parrot : Animal, IFlyable, ISpeakable
+public class Parrot : Animal
 {
     public Parrot(string name, GameTime gameTime)
         : base(name, gameTime)

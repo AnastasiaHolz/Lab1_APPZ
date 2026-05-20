@@ -1,6 +1,6 @@
 using System;
 
-abstract class Animal
+public abstract class Animal
 {
     public string Name { get; set; }
 
@@ -15,7 +15,14 @@ abstract class Animal
     public DateTime LastMealTime { get; protected set; }
     public DateTime LastCleaningTime { get; protected set; }
     private DateTime LastDayCheck;
+    public event EventHandler<AnimalEventArgs> AnimalEvent;
 
+
+    protected void RaiseEvent(string message)
+    {
+        AnimalEvent?.Invoke(this,
+            new AnimalEventArgs(Name, message));
+    }
     protected Animal(string name, GameTime gameTime)
     {
         Name = name;
@@ -38,31 +45,30 @@ abstract class Animal
     }
 
     public void Eat()
-{
-    if (!IsAlive)
-        return;
-
-    if (MealsToday >= 5)
     {
-        IsAlive = false;
-        Died?.Invoke($"{Name} died: overeating limit exceeded (5 meals/day).");
-        return;
+        if (!IsAlive)
+            return;
+
+        MealsToday++;
+
+        if (MealsToday > 5)
+        {
+            IsAlive = false;
+            RaiseEvent("died from overeating");
+            return;
+        }
+
+        LastMealTime = GameTime.CurrentTime;
+
+        RaiseEvent("has eaten");
     }
-
-    MealsToday++;
-
-    LastMealTime = GameTime.CurrentTime;
-}
 
     public void Clean()
     {
         LastCleaningTime = GameTime.CurrentTime;
+        IsHappy = true;
 
-        if (!IsHappy)
-        {
-            IsHappy = true;
-            BecameHappy?.Invoke($"{Name} is happy!");
-        }
+        RaiseEvent("has been cleaned and is happy");
     }
 
     public void Walk()
@@ -81,22 +87,24 @@ abstract class Animal
         double hoursWithoutFood =
             (GameTime.CurrentTime - LastMealTime).TotalHours;
 
+        if (hoursWithoutFood > 8)
+        {
+            RaiseEvent("is hungry");
+        }
+
         if (hoursWithoutFood > 24)
         {
             IsAlive = false;
-            Died?.Invoke($"{Name} died from hunger.");
-        }
-        else if (hoursWithoutFood > 8)
-        {
-            Hungry?.Invoke($"{Name} is hungry.");
+            RaiseEvent("died from starvation");
+            return;
         }
 
-        IsHappy =
-            (GameTime.CurrentTime - LastCleaningTime).TotalHours <= 24;
+        double hoursWithoutClean =
+            (GameTime.CurrentTime - LastCleaningTime).TotalHours;
 
-        if (GameTime.CurrentTime.Date > LastMealTime.Date)
+        if (hoursWithoutClean <= 24)
         {
-            MealsToday = 0;
+            IsHappy = true;
         }
     }
 
@@ -117,6 +125,11 @@ abstract class Animal
     }
 
         return status;
+    }
+
+    public virtual void Speak()
+    {
+        RaiseEvent($"{Name} makes a sound");
     }
 }
 

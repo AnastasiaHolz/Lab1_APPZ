@@ -7,6 +7,7 @@ C:\Users\ADmin\Desktop\Lab1_APPZ\obj\Debug\net9.0\Lab1_APPZ.GeneratedMSBuildEdit
 C:\Users\ADmin\Desktop\Lab1_APPZ\obj\Debug\net9.0\Lab1_APPZ.AssemblyInfoInputs.cache
 C:\Users\ADmin\Desktop\Lab1_APPZ\obj\Debug\net9.0\Lab1_APPZ.AssemblyInfo.cs
 C:\Users\ADmin\Desktop\Lab1_APPZ\obj\Debug\net9.0\Lab1_APPZ.csproj.CoreCompileInputs.cache
+C:\Users\ADmin\Desktop\Lab1_APPZ\obj\Debug\net9.0\Lab1_APPZ.sourcelink.json
 C:\Users\ADmin\Desktop\Lab1_APPZ\obj\Debug\net9.0\Lab1_APPZ.dll
 C:\Users\ADmin\Desktop\Lab1_APPZ\obj\Debug\net9.0\refint\Lab1_APPZ.dll
 C:\Users\ADmin\Desktop\Lab1_APPZ\obj\Debug\net9.0\Lab1_APPZ.pdb

@@ -6,48 +6,22 @@ class Program
     {
         GameTime gameTime = new GameTime();
 
-        Console.Write("Enter owner name: ");
+        Console.Write("Owner name: ");
         string ownerName = Console.ReadLine();
 
-        Console.WriteLine("\nChoose animal:");
-        Console.WriteLine("1 - Cat");
-        Console.WriteLine("2 - Parrot");
-        Console.WriteLine("3 - Snake");
+        Console.WriteLine("Choose animal: cat / parrot / snake");
+        string type = Console.ReadLine();
 
-        string choice = Console.ReadLine();
-
-        Console.Write("Enter pet name: ");
+        Console.Write("Pet name: ");
         string petName = Console.ReadLine();
 
-        Animal pet;
-
-        switch (choice)
-        {
-            case "1":
-                pet = new Cat(petName, gameTime);
-                break;
-
-            case "2":
-                pet = new Parrot(petName, gameTime);
-                break;
-
-            case "3":
-                pet = new Snake(petName, gameTime);
-                break;
-
-            default:
-                Console.WriteLine("Invalid choice, default Cat created.");
-                pet = new Cat(petName, gameTime);
-                break;
-        }
-
+        Animal pet = AnimalFactory.Create(type, petName, gameTime);
         Owner owner = new Owner(ownerName, pet);
 
-        pet.Hungry += msg => Console.WriteLine("[HUNGRY] " + msg);
-        pet.Died += msg => Console.WriteLine("[DEAD] " + msg);
-        pet.BecameHappy += msg => Console.WriteLine("[HAPPY] " + msg);
+        ConsoleObserver console = new ConsoleObserver();
+        pet.AnimalEvent += console.OnAnimalEvent;
 
-        Console.WriteLine("\n--- Simulation started ---");
+        Console.WriteLine("\nSimulation started...\n");
 
         bool exit = false;
 
@@ -59,11 +33,10 @@ class Program
             Console.WriteLine("\n1 Feed");
             Console.WriteLine("2 Clean");
             Console.WriteLine("3 Walk");
-            Console.WriteLine("4 Run");
-            Console.WriteLine("5 Fly/Crawl (type dependent)");
-            Console.WriteLine("6 Talk");
-            Console.WriteLine("7 Wait 3 hours");
-            Console.WriteLine("8 Status");
+            Console.WriteLine("4 Move (Run/Fly/Crawl)");
+            Console.WriteLine("5 Talk");
+            Console.WriteLine("6 Wait 3 hours");
+            Console.WriteLine("7 Status");
             Console.WriteLine("0 Exit");
 
             string action = Console.ReadLine();
@@ -86,25 +59,18 @@ class Program
                     break;
 
                 case "4":
-                    if (pet is IRunnable r) r.Run();
-                    gameTime.AddHours(2);
+                    ExecuteMovement(pet, gameTime);
                     break;
 
                 case "5":
-                    if (pet is IFlyable f) f.Fly();
-                    if (pet is ICrawlable c) c.Crawl();
-                    gameTime.AddHours(2);
+                    pet.Speak();
                     break;
 
                 case "6":
-                    if (pet is ISpeakable s) s.Speak();
-                    break;
-
-                case "7":
                     gameTime.AddHours(3);
                     break;
 
-                case "8":
+                case "7":
                     Console.WriteLine(pet.GetStatus());
                     break;
 
@@ -117,5 +83,18 @@ class Program
         }
 
         Console.WriteLine("\nSimulation ended.");
+    }
+
+    static void ExecuteMovement(Animal pet, GameTime gameTime)
+    {
+        IMoveStrategy strategy = pet.GetType().Name switch
+        {
+            "Cat" => new RunStrategy(),
+            "Parrot" => new FlyStrategy(),
+            "Snake" => new CrawlStrategy(),
+            _ => null
+        };
+
+        strategy?.Move(pet, gameTime);
     }
 }

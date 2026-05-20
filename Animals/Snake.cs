@@ -1,4 +1,4 @@
-class Snake : Animal, ICrawlable, ISpeakable
+public class Snake : Animal
 {
     public Snake(string name, GameTime gameTime)
         : base(name, gameTime)

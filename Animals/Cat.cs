@@ -1,4 +1,4 @@
-class Cat : Animal, IRunnable, ISpeakable
+public class Cat : Animal
 {
     public Cat(string name, GameTime gameTime)
         : base(name, gameTime)

@@ -1,4 +1,4 @@
-class GameTime
+public class GameTime
 {
     public DateTime CurrentTime { get; private set; }
 
